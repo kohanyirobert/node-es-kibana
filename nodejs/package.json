@@ -1,0 +1,8 @@
+{
+    "name": "node-es-kibana",
+    "version": "1.0.0",
+    "dependencies": {
+      "@elastic/elasticsearch": "7.5.1"
+    }
+  }
+  
