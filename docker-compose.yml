@@ -7,6 +7,8 @@ services:
       - discovery.type=single-node
     ports:
       - 9200:9200
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
   nodejs:
     build:
       context: ./nodejs
@@ -20,3 +22,6 @@ services:
       - 5601:5601
     links:
       - elasticsearch
+
+volumes:
+  elasticsearch_data:
