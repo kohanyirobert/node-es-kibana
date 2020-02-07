@@ -62,6 +62,14 @@ Issue this command to delete indexed docs to restart, etc.
 docker-compose exec nodejs node app.js delete my_index
 ```
 
+To reset Elasticsearch's storage completely run
+
+```
+docker volume prune
+```
+
+and select `y`, but this **deletes all local data on any volume, beware!**
+
 # Updating
 
 Whenever `app.js` changes (or something else related to the up) run these commands.
