@@ -11,8 +11,10 @@ to see the log for each service in the foreground, or
 to leave services run in the background.
 
 Wait for the services to start and visit
-* http://localhost:9001 for Elastic Search and
+* http://localhost:9001 for Elasticsearch and
 * http://localhost:5601 for Kibana.
+
+**Note**: this also sets up a volume where Elasticsearch's data is going to be stored persistently across restarts.
 
 # Commands
 
@@ -20,6 +22,7 @@ Wait for the services to start and visit
 * Creating indices - `docker-compose exec nodejs node app.js create <ES index name>`
 * Deleting indices - `docker-compose exec nodejs node app.js delete <ES index name>`
 * Creating/updating mappings - `docker-compose exec nodejs node app.js putMapping <ES index name> <path to JSON file>`
+* Generate sample data - `docker-compose exec nodejs node app.js sample-data <ES index name>`
 
 ## Example
 
@@ -41,6 +44,7 @@ Let's break it down.
 docker-compose exec nodejs node app.js create my_index
 docker-compose exec nodejs node app.js putMapping my_index my.mapping.json
 docker-compose exec nodejs node app.js index my_index my.json
+docker-compose exec nodejs node app.js sample-data my_index
 docker-compose exec nodejs node app.js delete my_index
 ```
 
