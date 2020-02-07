@@ -40,11 +40,25 @@ Let's break it down.
 
 ## Complex Example
 
+Run this to create a more complex setup.
+
 ```
 docker-compose exec nodejs node app.js create my_index
 docker-compose exec nodejs node app.js putMapping my_index my.mapping.json
 docker-compose exec nodejs node app.js index my_index my.json
 docker-compose exec nodejs node app.js sample-data my_index
+```
+
+After this open http://localhost:5601 and
+* create an index pattern called `my_index` (on the startup screen or from the right-side menu, *Management* > *Index Patters*) and
+* import visualizations as saved objects (go to *Management* > *Saved Objects*) by browser for the `visualizations.ndjson` file included in the repo in the import dialog. Choose the index pattern you'd like to associate the visualizations with.
+* Then go to *Visualize* and choose one of the imported visualizations.
+* Configure the date selector like this `now - ~ in 8 days`. To do this select `now` in the "from" (left) panel and `relative` in the "to" (right) panel and choose _1 Weeks from now" (the `sample-data` command generate data from _now_ up till a few news in 15 minute increments).
+* Finally, on the left go to *Buckets* and configure *X-axis* and choose the required time resolution in the *Minimum interval* dropdown.
+
+Issue this command to delete indexed docs to restart, etc.
+
+```
 docker-compose exec nodejs node app.js delete my_index
 ```
 
