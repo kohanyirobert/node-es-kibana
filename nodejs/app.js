@@ -59,6 +59,16 @@ if (command === 'index' || command === 'putMapping')  {
             id: 'BBBBBBBB-22222222-BBBBBBBB',
             low: 16.0,
             high: 20.0
+        },
+        {
+            id: 'CCCCCCCC-33333333-CCCCCCCC',
+            low: 16.0,
+            high: 46.0
+        },
+        {
+            id: 'DDDDDDDD-44444444-DDDDDDDD',
+            low: 32.0,
+            high: 34.0
         }
     ]
     const dataset = []
