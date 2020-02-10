@@ -1,0 +1,14 @@
+{
+    "properties": {
+        "timestamp": {
+            "type": "date",
+            "format": "yyyy-MM-dd HH:mm:ss"
+        },
+        "sensor": {
+            "type": "text"
+        },
+        "value": {
+            "type": "float"
+        }
+    }
+}

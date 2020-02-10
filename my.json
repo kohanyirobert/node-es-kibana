@@ -1,0 +1,92 @@
+[
+    {
+        "timestamp": "2020-01-01 00:00:00",
+        "sensor": "AAAAAAAA-11111111-AAAAAAAA",
+        "value": 35.50
+    },
+    {
+        "timestamp": "2020-01-01 00:10:00",
+        "sensor": "AAAAAAAA-11111111-AAAAAAAA",
+        "value": 36.00
+    },
+    {
+        "timestamp": "2020-01-01 00:15:00",
+        "sensor": "AAAAAAAA-11111111-AAAAAAAA",
+        "value": 34.00
+    },
+    {
+        "timestamp": "2020-01-01 00:20:00",
+        "sensor": "AAAAAAAA-11111111-AAAAAAAA",
+        "value": 35.50
+    },
+    {
+        "timestamp": "2020-01-01 00:30:00",
+        "sensor": "AAAAAAAA-11111111-AAAAAAAA",
+        "value": 35.00
+    },
+    {
+        "timestamp": "2020-01-01 00:39:00",
+        "sensor": "AAAAAAAA-11111111-AAAAAAAA",
+        "value": 36.00
+    },
+    {
+        "timestamp": "2020-01-01 00:40:00",
+        "sensor": "AAAAAAAA-11111111-AAAAAAAA",
+        "value": 36.00
+    },
+    {
+        "timestamp": "2020-01-01 00:45:00",
+        "sensor": "AAAAAAAA-11111111-AAAAAAAA",
+        "value": 38.50
+    },
+    {
+        "timestamp": "2020-01-01 00:45:00",
+        "sensor": "AAAAAAAA-11111111-AAAAAAAA",
+        "value": 37.00
+    },
+    {
+        "timestamp": "2020-01-01 00:49:00",
+        "sensor": "AAAAAAAA-11111111-AAAAAAAA",
+        "value": 37.50
+    },
+    {
+        "timestamp": "2020-01-01 00:55:00",
+        "sensor": "AAAAAAAA-11111111-AAAAAAAA",
+        "value": 38.00
+    },
+    {
+        "timestamp": "2020-01-01 00:59:00",
+        "sensor": "AAAAAAAA-11111111-AAAAAAAA",
+        "value": 39.00
+    },
+    {
+        "timestamp": "2020-01-01 00:00:00",
+        "sensor": "BBBBBBBB-22222222-BBBBBBBB",
+        "value": 26.00
+    },
+    {
+        "timestamp": "2020-01-01 00:06:00",
+        "sensor": "BBBBBBBB-22222222-BBBBBBBB",
+        "value": 27.00
+    },
+    {
+        "timestamp": "2020-01-01 00:11:00",
+        "sensor": "BBBBBBBB-22222222-BBBBBBBB",
+        "value": 27.60
+    },
+    {
+        "timestamp": "2020-01-01 00:30:00",
+        "sensor": "BBBBBBBB-22222222-BBBBBBBB",
+        "value": 29.70
+    },
+    {
+        "timestamp": "2020-01-01 00:34:00",
+        "sensor": "BBBBBBBB-22222222-BBBBBBBB",
+        "value": 29.80
+    },
+    {
+        "timestamp": "2020-01-01 00:58:00",
+        "sensor": "BBBBBBBB-22222222-BBBBBBBB",
+        "value": 31.00
+    }
+]
