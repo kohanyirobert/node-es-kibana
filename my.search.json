@@ -1,0 +1,25 @@
+{
+    "size": 0,
+    "aggregations": {
+        "by_sensor": {
+            "terms": {
+                "field": "sensor"
+            },
+            "aggregations": {
+                "by_timestamp": {
+                    "date_histogram": {
+                        "field": "timestamp",
+                        "calendar_interval": "1w"
+                    },
+                    "aggregations": {
+                        "by_avg_value": {
+                            "avg": {
+                                "field": "value"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -22,6 +22,7 @@ Wait for the services to start and visit
 * Creating indices - `docker-compose exec nodejs node app.js create <ES index name>`
 * Deleting indices - `docker-compose exec nodejs node app.js delete <ES index name>`
 * Creating/updating mappings - `docker-compose exec nodejs node app.js putMapping <ES index name> <path to JSON file>`
+* Searching/querying aggregated data - `docker-compose exec nodejs node app.js search <ES index name> <path to JSON file>`
 * Generate sample data - `docker-compose exec nodejs node app.js sample-data <ES index name>`
 
 ## Example
