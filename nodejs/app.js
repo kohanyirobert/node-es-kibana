@@ -26,7 +26,7 @@ if (process.argv.length <= 3) {
 
 const command = process.argv[2]
 const index = process.argv[3]
-if (command === 'index' || command === 'putMapping')  {
+if (command === 'index' || command === 'putMapping' || command === 'search')  {
     if (process.argv.length <= 4) {
         console.error("Second argument should be a JSON file's path.")
         process.exit(-2)
@@ -41,6 +41,17 @@ if (command === 'index' || command === 'putMapping')  {
         json.forEach(data => client.index({ index: index, body: data }, errHandler))
     } else if (command === 'putMapping') {
         client.indices.putMapping({ index: index, body: json }, errHandler)
+    } else if (command === 'search') {
+        client.search({
+            index: index,
+            filter_path: '**.by_sensor.buckets.key,**.by_timestamp.buckets.key_as_string,**.by_avg_value.value',
+            body: json
+        }, function(err, result) {
+            if (err) {
+                console.error(JSON.stringify(err, null, 2))
+            }
+            console.log(JSON.stringify(result.body))
+        })
     }
 } else if (command === 'create' || command === 'delete') {
     if (command === 'create') {
