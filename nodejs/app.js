@@ -29,7 +29,7 @@ const index = process.argv[3]
 if (command === 'index' || command === 'putMapping' || command === 'search')  {
     if (process.argv.length <= 4) {
         console.error("Second argument should be a JSON file's path.")
-        process.exit(-2)
+        process.exit(-1)
     }
     
     let json = JSON.parse(fs.readFileSync(path.join('data', process.argv[4])).toString())
@@ -55,11 +55,16 @@ if (command === 'index' || command === 'putMapping' || command === 'search')  {
     }
 } else if (command === 'create' || command === 'delete') {
     if (command === 'create') {
-        client.indices.create({ index: index }, errHandler);
+        client.indices.create({ index: index }, errHandler)
     } else {
-        client.indices.delete({ index: index }, errHandler);
+        client.indices.delete({ index: index }, errHandler)
     }
 } else if (command === 'sample-data') {
+    if (process.argv.length <= 4) {
+        console.error("Second argument should be the number of samples to generate per sensor")
+        process.exit(-1)
+    }
+    const samples = parseInt(process.argv[4])
     const sensors = [
         {
             id: 'AAAAAAAA-11111111-AAAAAAAA',
@@ -82,10 +87,17 @@ if (command === 'index' || command === 'putMapping' || command === 'search')  {
             high: 34.0
         }
     ]
-    const dataset = []
+    const start = new Date()
+    start.setHours(0)
+    start.setMinutes(0)
+    start.setSeconds(0)
+    start.setMilliseconds(0)
     sensors.forEach((sensor) => {
         const datetime = new Date()
-        for (let i = 0; i < 1000; i++) {
+        datetime.setTime(start.getTime())
+        let batch = 0
+        let dataset = []
+        for (let i = 0; i < samples; i++) {
             const timestamp = datetime.toISOString()
             dataset.push({
                 sensor: sensor.id,
@@ -93,10 +105,18 @@ if (command === 'index' || command === 'putMapping' || command === 'search')  {
                 value: random(sensor.low, sensor.high)
             })
             datetime.setMinutes(datetime.getMinutes() + 15)
+            if (batch === 1000) {
+                client.bulk({ 
+                    refresh: true,
+                    body: dataset.flatMap(doc => [{ index: { _index: index } }, doc])
+                }, errHandler)
+                batch = 0
+                dataset = []
+            } else {
+                batch++
+            }
         }
     })
-    const body = dataset.flatMap(doc => [{ index: { _index: index } }, doc])
-    client.bulk({ refresh: true, body }, errHandler)
 } else {
     console.error(`Unkown command: ${command}`)
 }

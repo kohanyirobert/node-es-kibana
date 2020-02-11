@@ -23,7 +23,7 @@ Wait for the services to start and visit
 * Deleting indices - `docker-compose exec nodejs node app.js delete <ES index name>`
 * Creating/updating mappings - `docker-compose exec nodejs node app.js putMapping <ES index name> <path to JSON file>`
 * Searching/querying aggregated data - `docker-compose exec nodejs node app.js search <ES index name> <path to JSON file>`
-* Generate sample data - `docker-compose exec nodejs node app.js sample-data <ES index name>`
+* Generate sample data - `docker-compose exec nodejs node app.js sample-data <ES index name> <number of samples>`
 
 **Note**: when using `search` refer to `my.search.json` which defines the aggregation scheme. Change `calendar_interval`'s value to `3d`, `1w`, or similar ([refer to this documentation for allowed values](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-datehistogram-aggregation.html#calendar_intervals)).
 
@@ -48,7 +48,7 @@ Run this to create a more complex setup.
 ```
 docker-compose exec nodejs node app.js create my_index
 docker-compose exec nodejs node app.js putMapping my_index my.mapping.json
-docker-compose exec nodejs node app.js sample-data my_index
+docker-compose exec nodejs node app.js sample-data my_index 10000
 ```
 
 or run the appropriate `run-sample` script (`.ps1` or `.sh`).
