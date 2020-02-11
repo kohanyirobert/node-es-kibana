@@ -25,6 +25,8 @@ Wait for the services to start and visit
 * Searching/querying aggregated data - `docker-compose exec nodejs node app.js search <ES index name> <path to JSON file>`
 * Generate sample data - `docker-compose exec nodejs node app.js sample-data <ES index name>`
 
+**Note**: when using `search` refer to `my.search.json` which defines the aggregation scheme. Change `calendar_interval`'s value to `3d`, `1w`, or similar ([refer to this documentation for allowed values](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-datehistogram-aggregation.html#calendar_intervals)).
+
 ## Example
 
 `docker-compose exec nodejs node app.js index my_index my.json`
