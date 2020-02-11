@@ -14,6 +14,25 @@ function errHandler(err, result) {
     }
 }
 
+async function bulkIndex(size, remaining, datetime, step, sensor) {
+    const dataset = []
+    for (let i = 0; i < size; i++) {
+        const timestamp = datetime.toISOString()
+        dataset.push({
+            sensor: sensor.id,
+            timestamp: timestamp.substring(0, 10) + ' ' + timestamp.substring(11, 19),
+            value: random(sensor.low, sensor.high)
+        })
+        datetime.setSeconds(datetime.getSeconds() + step)
+    }
+    await client.bulk({ body: dataset.flatMap(doc => [{ index: { _index: index } }, doc])})
+    if (remaining >= size) {
+        bulkIndex(size, remaining - size, datetime, step, sensor)
+    } else if (remaining > 0) {
+        bulkIndex(remaining, 0, datetime, step, sensor)
+    }
+}
+
 if (process.argv.length <= 2) {
     console.error('First argument should be one of the following: index, create, delete, putMapping, sample-data')
     process.exit(-1)
@@ -95,26 +114,11 @@ if (command === 'index' || command === 'putMapping' || command === 'search')  {
     sensors.forEach((sensor) => {
         const datetime = new Date()
         datetime.setTime(start.getTime())
-        let batch = 0
-        let dataset = []
-        for (let i = 0; i < samples; i++) {
-            const timestamp = datetime.toISOString()
-            dataset.push({
-                sensor: sensor.id,
-                timestamp: timestamp.substring(0, 10) + ' ' + timestamp.substring(11, 19),
-                value: random(sensor.low, sensor.high)
-            })
-            datetime.setMinutes(datetime.getMinutes() + 15)
-            if (batch === 1000) {
-                client.bulk({ 
-                    refresh: true,
-                    body: dataset.flatMap(doc => [{ index: { _index: index } }, doc])
-                }, errHandler)
-                batch = 0
-                dataset = []
-            } else {
-                batch++
-            }
+        const size = 1000
+        if (samples >= size) {
+            bulkIndex(size, samples - size, datetime, 1, sensor)
+        } else if (samples > 0) {
+            bulkIndex(samples, 0, datetime, 1, sensor)
         }
     })
 } else {
