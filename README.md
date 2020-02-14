@@ -88,3 +88,29 @@ or
 `docker-compose up --build -d`
 
 This will rebuild images that are no longer up-to-date and recreate/restart them.
+
+# Kibana Dev Tools
+
+[Kibana's UI has a built-in dev tool](http://localhost:5601/app/kibana#/dev_tools) where it's possible to send queries and commands against its backing Elastic Search instance.
+
+E.g. **to query samples for a particular sensor** open the dev tool window and into the editor write a query like this
+
+```
+GET my_index/_search
+{
+  ...
+}
+```
+
+but replace the JSON payload with the contents of `my.sensor-time-range-search.json`.
+
+To **delete the same data for a particular sensor** instead send a delete request
+
+```
+DELETE my_index/_delete_by_query
+{
+  ...
+}
+```
+
+and use the same query JSON as the request's body.
