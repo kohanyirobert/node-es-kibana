@@ -107,7 +107,7 @@ but replace the JSON payload with the contents of `my.sensor-time-range-search.j
 To **delete the same data for a particular sensor** instead send a delete request
 
 ```
-DELETE my_index/_delete_by_query
+POST my_index/_delete_by_query
 {
   ...
 }

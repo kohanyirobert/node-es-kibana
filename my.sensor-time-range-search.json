@@ -1,20 +1,21 @@
 {
-  "query": {
-    "bool": {
-      "must": [{
-          "match": {
-            "sensor": "DDDDDDDD-44444444-DDDDDDDD"
-          }
-        },
-        {
-          "range": {
-            "timestamp": {
-              "gte": "2020-02-13 03:09:00",
-              "lte": "2020-02-13 03:10:00"
-            }
-          }
+    "query": {
+        "bool": {
+            "must": [
+                {
+                    "match": {
+                        "sensor": "DDDDDDDD-44444444-DDDDDDDD"
+                    }
+                },
+                {
+                    "range": {
+                        "timestamp": {
+                            "gte": "now+30m",
+                            "lte": "now+31"
+                        }
+                    }
+                }
+            ]
         }
-      ]
     }
-  }
 }
