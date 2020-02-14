@@ -13,6 +13,7 @@ services:
     build:
       context: ./nodejs
     volumes:
+      - ./app.js:/home/node/app.js
       - .:/home/node/data
     links:
       - elasticsearch

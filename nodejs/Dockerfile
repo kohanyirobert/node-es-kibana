@@ -5,4 +5,3 @@ WORKDIR /home/node
 COPY package.json .
 RUN npm install
 ENTRYPOINT ["tail", "-f", "/dev/null"]
-COPY app.js .
